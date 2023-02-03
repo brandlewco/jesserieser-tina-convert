@@ -1,3 +1,7 @@
+---
+_template: blog_post_builder
+---
+
 +++
 attached_collection = "collections/the-new-york-times-1.md"
 attached_link = ""

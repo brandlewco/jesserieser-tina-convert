@@ -1,3 +1,7 @@
+---
+_template: blog_post_builder
+---
+
 +++
 attached_collection = "collections/xmas-in-america.md"
 attached_link = ""

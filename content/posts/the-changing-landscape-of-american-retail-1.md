@@ -1,3 +1,7 @@
+---
+_template: blog_post_builder
+---
+
 +++
 attached_collection = "collections/retail.md"
 attached_link = ""

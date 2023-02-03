@@ -1,3 +1,7 @@
+---
+_template: blog_post_builder
+---
+
 +++
 attached_collection = "collections/barron-s-las-vegas-reopenning.md"
 attached_link = ""

@@ -1,3 +1,7 @@
+---
+_template: blog_post_builder
+---
+
 +++
 align_x = "start"
 attached_collection = "collections/retail.md"

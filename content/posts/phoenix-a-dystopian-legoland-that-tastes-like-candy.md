@@ -1,3 +1,7 @@
+---
+_template: blog_post_builder
+---
+
 +++
 attached_collection = "collections/phoenix.md"
 block_aspect_ratio = "ratio-11x8-5"

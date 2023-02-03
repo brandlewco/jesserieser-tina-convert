@@ -1,3 +1,7 @@
+---
+_template: blog_post_builder
+---
+
 +++
 attached_collection = "collections/antoine-s-escalaras.md"
 attached_link = ""
