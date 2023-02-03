@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="{{ .Lang }}">
+  {{ partial "head" .}}
+  <body class="{{ with.Title }}page-{{ lower . | urlize }}{{ end }} {{ if eq .Params.collection_archive true }}archive{{end}}">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N2ZVNND"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+      <!-- End Google Tag Manager (noscript) -->
+    {{ if .Params.projects }}
+      {{ partial "header_projects" .}}
+    {{else}}
+      {{ partial "header" .}}
+    {{end}}
+    <main id="content" class="transition-page">
+      {{ block "main" .}}
+      {{ end }}
+      {{ partial "footer" . }}
+      {{ block "attached" .}}
+      {{ end }}
+      <!-- <script src="https://gumroad.com/js/gumroad.js"></script> -->
+      <script src="https://player.vimeo.com/api/player.js"></script>
+    </main>
+    <!-- {{ partial "modal_about.html" .}} -->
+    {{ partial "fa-icon.html" .}}
+    <style type="text/css">
+    {{ partial "style_themer.html" . | safeCSS }}
+    </style>
+  </body>
+</html>

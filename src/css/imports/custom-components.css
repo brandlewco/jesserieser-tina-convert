@@ -1,0 +1,181 @@
+
+/* 
+html.is-changing #content {
+  transform: scale(0.7);
+  transition: transform 0.1s ease-in-out;
+} */
+.list-none {
+  list-style: none;
+}
+
+@responsive {
+  .translate-0 {
+    transform: translateY(0%);
+  }
+  .translate-neg {
+    transform: translateY(-200%);
+  }
+  .ratio-1x1 {
+    padding-top: 100% !important;
+  }
+  .ratio-3x2 {
+    padding-top: 66.66% !important;
+  }
+  .ratio-2x3 {
+    padding-top: 150% !important;
+  }
+  .ratio-9x16 {
+    padding-top: 177.77% !important;
+  }
+  .ratio-16x9 {
+    padding-top: 56.25% !important;
+  }
+  .ratio-5x4 {
+    padding-top: 125% !important;
+  }
+  .ratio-4x5 {
+    padding-top: 80% !important;
+  }
+  .ratio-4x3 {
+    padding-top: 75% !important;
+  }
+  .ratio-3x4 {
+    padding-top: 133% !important; 
+  }
+  .ratio-8-5x11 {
+    padding-top: 129.41% !important;
+  }
+  .ratio-11x8-5 {
+    padding-top: 77.2727% !important;
+  }
+}
+
+@media (max-width: 768px) { 
+  .translate-none {
+    transform: none !important;
+  }
+}
+
+.hue-header {
+  will-change: transform;
+}
+
+.hue-header h1, .hue-header button {
+  transition: 0.33s all ease-in-out;
+}
+
+.button {
+  transition: 0.2s color ease-in-out;
+  @apply text-black;
+}
+.button:focus {outline:0;}
+
+.button.ui-check {
+  transition: 0.15s font-weight ease-in-out, 0.25s color ease-in-out;
+}
+.button.ui-check.is-checked {
+  @apply font-bold text-black;
+}
+.button.button.ui-check.is-checked::after {
+  content: "x";
+  position: absolute;
+  left: -0.5rem;
+  bottom: 1px;
+  @apply font-thin;
+}
+
+.button.ui-radio {
+  transition: 0.15s font-weight ease-in-out, 0.25s color ease-in-out;
+}
+
+.button.ui-radio.is-checked {
+  @apply font-semibold
+}
+
+.hue-btn {
+  @apply font-light py-2 px-4 rounded no-underline text-white;
+  background-color: rgba(255,255,255,0.2);
+  &:hover {
+    background-color: rgba(255,255,255,0.4);
+  }
+}
+
+.hue-header.default .shift, .hue-header.black .shift{
+  @apply text-black !important;;
+}
+
+.hue-header.default .shift.bun, .hue-header.black .shift.bun{
+  @apply bg-black !important;;
+}
+
+.hue-header.white .shift{
+  @apply text-white !important;
+}
+
+.hue-header.white .shift.bun {
+  @apply bg-white !important;
+}
+
+a.shift:hover {
+  @apply text-black;
+}
+
+.btn-brief {
+  @apply font-light no-underline text-white w-full py-4;
+  background-color: rgba(255,255,255,0.1);
+  transition: 0.33s background-color ease-in-out;
+  &:hover {
+    background-color: rgba(255,255,255, 0.2);
+  }
+}
+
+
+button.target-burger {
+  position: relative;
+  display: block;
+  transition: all 0.3s ease;
+}
+button.target-burger:hover {
+  cursor: pointer;
+  /* opacity: 0.8; */
+}
+.navToggle.toggle-active button.target-burger ul.buns li.bun {
+  -webkit-transform: rotate(45deg) translateZ(0);
+  transform: rotate(45deg) translateZ(0);
+  background-color: #000 !important;
+}
+.navToggle.toggle-active button.target-burger ul.buns li.bun:last-child {
+  -webkit-transform: rotate(-45deg) translateZ(0);
+  transform: rotate(-45deg) translateZ(0);
+}
+button.target-burger ul.buns {
+  width: 1.5rem;
+  height: 1.5rem;
+  list-style: none;
+  /* margin: -0.8125em 0 0 -0.8125em; */
+  padding: 0;
+  position: relative;
+  /* top: 50%;
+  left: 50%; */
+  -webkit-transition: -webkit-transform 1s cubic-bezier(0.23, 1, 0.32, 1), color 1s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: transform 1s cubic-bezier(0.23, 1, 0.32, 1), color 1s cubic-bezier(0.23, 1, 0.32, 1);
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  color: #fff;
+}
+button.target-burger ul.buns li.bun {
+  width: 100%;
+  height: 2px;
+  background-color: #fff;
+  position: absolute;
+  top: 50%;
+  margin-top: -0.75px;
+  -webkit-transform: translateY(-3.75px) translateZ(0);
+  transform: translateY(-3.75px) translateZ(0);
+  -webkit-transition: -webkit-transform 1s cubic-bezier(0.23, 1, 0.32, 1), background-color 1s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: transform 1s cubic-bezier(0.23, 1, 0.32, 1), background-color 1s cubic-bezier(0.23, 1, 0.32, 1);
+}
+button.target-burger ul.buns li.bun:last-child {
+  -webkit-transform: translateY(3.75px) translateZ(0);
+  transform: translateY(3.75px) translateZ(0);
+}

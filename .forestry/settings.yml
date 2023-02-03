@@ -1,0 +1,63 @@
+---
+new_page_extension: md
+auto_deploy: true
+admin_path: static/admin
+webhook_url: 
+sections:
+- type: heading
+  label: COLLECTIONS
+- type: document
+  path: content/_index.md
+  label: Selected Works
+- type: document
+  path: data/categories/categories.toml
+  label: All Works
+- type: directory
+  path: content/collections
+  label: Collections
+  create: documents
+  match: "**/*"
+  templates:
+  - collection-page-builder
+- type: directory
+  path: content/shop
+  label: Shop
+  create: all
+  match: "**/*"
+  templates:
+  - shop
+- type: heading
+  label: CONTENT
+- type: directory
+  path: content/posts
+  label: Posts
+  create: all
+  match: "**/*"
+  templates:
+  - blog-post-builder
+- type: document
+  path: content/about/_index.md
+  label: About
+- type: heading
+  label: Help
+- type: document
+  path: README-DATA.md
+  label: Site Data
+  read_only: true
+upload_dir: ''
+public_path: https://d1sf55qlb7p6hz.cloudfront.net
+front_matter_path: ''
+use_front_matter_path: 
+file_template: ":filename:"
+build:
+  preview_env:
+  - HUGO_ENV=staging
+  - HUGO_VERSION=0.56.0
+  - GIT_LFS_SKIP_SMUDGE=1
+  preview_output_directory: dist
+  install_dependencies_command: npm install
+  preview_docker_image: forestryio/hugo:node14
+  mount_path: "/srv"
+  working_dir: "/srv"
+  instant_preview_command: npm run build:forestry
+version: 0.55.2

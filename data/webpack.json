@@ -1,0 +1,15 @@
+{
+  "filter": {
+    "js": "filter.js"
+  },
+  "main": {
+    "css": "main.css",
+    "js": "main.js"
+  },
+  "shop": {
+    "js": "shop.js"
+  },
+  "": {
+    "keep": "fonts/.keep"
+  }
+}

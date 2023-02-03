@@ -1,0 +1,25 @@
+[build.environment]
+  YARN_VERSION = "1.12.1"
+  NPM_VERSION = "6.4.1"
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[context.deploy-preview]
+  command = "npm run build:preview"
+
+[[redirects]]
+  from = "/projects"
+  to = "/collections/#filter=.personal"
+  status = 301
+
+[[redirects]]
+  from = "/posts/*"
+  to = "/#blog-:splat"
+  status = 301
+
+  [[redirects]]
+  from = "/portfolio"
+  to = "/collections/"
+  status = 301

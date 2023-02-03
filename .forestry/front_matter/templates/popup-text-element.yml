@@ -1,0 +1,26 @@
+---
+label: "• List Item"
+hide_body: true
+display_field: content
+fields:
+- name: content
+  type: textarea
+  default: "**2019**  \nAP 35: American Photography Annual 35  \nBest Personal Work
+    Series:  \n\"Phoenix: A Dystopian Legoland That Tastes Like Candy\""
+  config:
+    required: false
+    wysiwyg: true
+    schema:
+      format: markdown
+  label: Content
+- name: icon
+  type: file
+  config:
+    maxSize: 64
+  label: Icon
+- name: url
+  type: text
+  config:
+    required: false
+  label: URL
+  description: Link out URL

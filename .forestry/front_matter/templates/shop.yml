@@ -1,0 +1,99 @@
+---
+label: Shop
+hide_body: true
+display_field: title
+fields:
+- type: text
+  name: layout
+  label: Layout
+  hidden: true
+  default: blocks
+- type: text
+  label: Item Title
+  name: title
+- name: collection_meta
+  type: text
+  config:
+    required: false
+  label: Item Meta
+  description: Project year, or one line description
+- name: collection_meta_2
+  type: text
+  config:
+    required: false
+  label: Item Meta 2
+  description: secondary meta (optional)
+- name: price
+  type: number
+  label: Item Price
+  description: ''
+  default: 0
+  required: true
+  config:
+    min: 
+    max: 
+    step: 
+- name: sale
+  type: boolean
+  label: On Sale
+- name: sale_price
+  type: number
+  label: Sale Price
+  description: ''
+  default: 0
+  required: true
+  config:
+    min: 
+    max: 
+    step: 
+  showOnly:
+    field: sale
+    value: true
+- name: gumroad_id
+  type: text
+  config:
+    required: false
+  label: GumRoad ID
+- name: collection_preview
+  type: image_gallery
+  config: {}
+  label: Collection Preview
+  description: Preview images used on all work page
+- type: color
+  name: theme_color
+  config:
+    color_format: Hex
+  label: Theme Color
+- name: collection_category
+  type: list
+  config:
+    use_select: true
+    min: '1'
+    max: 
+    source:
+      type: documents
+      file: data/categories/categories.toml
+      path: categories
+      section: ''
+  label: Collection Category
+- type: datetime
+  name: date
+  label: Publish Date
+  hidden: true
+  default: now
+- name: collection_hidden
+  type: boolean
+  label: Hide Collection
+  description: Don't show this collection in the all works sorter, accessible only
+    through direct link.
+  hidden: true
+- name: shop
+  type: boolean
+  label: Shop Navigation Label
+  default: true
+  hidden: true
+pages:
+- content/shop/best-buy.2018.md
+- content/shop/facility-study-no.5.2016.md
+- content/shop/macy-s.2018.md
+- content/shop/sears.2015.md

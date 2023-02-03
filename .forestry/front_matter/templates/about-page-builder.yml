@@ -1,0 +1,193 @@
+---
+label: About - Page Builder
+hide_body: true
+fields:
+- type: text
+  label: Title
+  name: title
+- type: datetime
+  name: date
+  label: Date
+  hidden: true
+- type: text
+  name: layout
+  label: Layout
+  hidden: true
+  default: blocks
+- type: file
+  name: collection_cover
+  label: Cover Image
+- name: collection_cover_mobile
+  type: file
+  label: Cover Image Mobile
+- type: color
+  name: theme_color
+  config:
+    color_format: Hex
+  label: Theme Color
+- name: navigation_theme
+  type: select
+  default: []
+  config:
+    required: false
+    options:
+    - black
+    - white
+    source:
+      type: simple
+      section: 
+      file: 
+      path: 
+  label: Navigation Theme
+- type: textarea
+  name: collection_description
+  label: Description
+  config:
+    wysiwyg: true
+    schema:
+      format: markdown
+  hidden: true
+- name: header_col_1_title
+  type: textarea
+  default: ''
+  config:
+    required: false
+    wysiwyg: true
+    schema:
+      format: markdown
+  label: Header Column 1 Title
+- name: header_col_1
+  type: textarea
+  default: ''
+  config:
+    required: false
+    wysiwyg: true
+    schema:
+      format: markdown
+  label: Header Column 1
+- name: header_col_2_title
+  type: textarea
+  default: ''
+  config:
+    required: false
+    wysiwyg: true
+    schema:
+      format: markdown
+  label: Header Column 2 Title
+- name: header_col_2
+  type: textarea
+  default: ''
+  config:
+    required: false
+    wysiwyg: true
+    schema:
+      format: markdown
+  label: Header Column 2
+- name: header_col_3_title
+  type: textarea
+  default: ''
+  config:
+    required: false
+    wysiwyg: true
+    schema:
+      format: markdown
+  label: Header Column 3 Title
+- name: header_col_3
+  type: textarea
+  default: ''
+  config:
+    required: false
+    wysiwyg: true
+    schema:
+      format: markdown
+  label: Header Column 3
+- name: about_bio
+  type: textarea
+  default: ''
+  config:
+    required: false
+    wysiwyg: true
+    schema:
+      format: markdown
+  label: Bio
+- name: about_bio_image
+  type: file
+  config:
+    maxSize: 64
+  label: Bio Image
+- name: about_bio_image_credit
+  type: text
+  config:
+    required: false
+  label: Bio Image Credit
+- name: about_bio_doodle_credit
+  type: text
+  config:
+    required: false
+  label: Bio Doodle Credit
+- name: row_alignment
+  type: select
+  default: between
+  config:
+    required: false
+    options:
+    - start
+    - center
+    - end
+    - between
+    - around
+    source:
+      type: simple
+      section: 
+      file: 
+      path: 
+  label: First Row Justification
+  description: start (left) / center (center) / end (right) / between (even space     between
+    media) / around (even space outside media)
+- type: blocks
+  name: page_sections
+  label: Page Sections
+  template_types:
+  - block-modal-list
+  - block-media-text
+  - block-media-row
+- type: file
+  name: cover_image
+  label: Social Media Card
+  description: This image is what appears in OpenGraph previews and image masks
+- name: cv
+  type: file
+  config:
+    maxSize: 64
+  label: CV
+- name: cv_color
+  type: color
+  config:
+    required: false
+    color_format: Hex
+  label: CV Color
+- name: footer_links
+  type: field_group_list
+  fields:
+  - name: link_title
+    type: text
+    config:
+      required: false
+    label: Link Title
+  - name: link_url
+    type: text
+    config:
+      required: false
+    label: Link URL
+  config:
+    min: 
+    max: 
+    labelField: 
+  label: Footer Links
+- name: seo
+  type: include
+  config: {}
+  template: seo
+  label: SEO
+pages:
+- content/about/_index.md

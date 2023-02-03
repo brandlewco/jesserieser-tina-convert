@@ -1,0 +1,43 @@
+---
+label: "\U0001F3D9 Blog Image"
+hide_body: false
+display_field: caption
+fields:
+- type: text
+  hidden: true
+  label: block
+  name: block
+  default: media-element-static
+- type: file
+  name: image
+  label: Image
+- type: text
+  name: caption
+  label: Caption
+- type: select
+  name: width
+  config:
+    source:
+      type: simple
+      section: ''
+      path: ''
+    options:
+    - '10'
+    - '15'
+    - '20'
+    - '25'
+    - '30'
+    - '33'
+    - '40'
+    - '45'
+    - '50'
+    - '55'
+    - '60'
+    - '66'
+    - '70'
+    - '75'
+    - '80'
+    - '90'
+    - '100'
+  label: Media Width
+  default: '50'

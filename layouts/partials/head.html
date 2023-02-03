@@ -1,0 +1,55 @@
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <base href="{{ if getenv "CONTEXT" }}{{ cond (eq "production" (getenv "CONTEXT")) (getenv "URL") (getenv "DEPLOY_PRIME_URL") }}{{ else }}{{ $.Site.BaseURL }}{{ end }}">
+
+    <title>{{ if .Params.seo.meta_title }}{{.Params.seo.meta_title}}{{else}}{{.Params.Title}}. {{.Params.collection_meta}}{{end}}</title>
+    <meta property="og:title" content="{{ if .Params.seo.meta_title }}{{.Params.seo.meta_title}}{{else}}{{.Params.Title}}. {{.Params.collection_meta}}{{end}}"/>
+    <meta name="description" property="og:description"  content="{{if .Params.seo.meta_description}}{{.Params.seo.meta_description}}{{else}}{{.Params.collection_description | markdownify | truncate 150 }}{{end}}">
+
+    
+    <meta name="author" content="{{ .Site.Title }}"/>
+    <meta property="og:url" content="{{ .Permalink | absLangURL }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="{{ .Site.Title }}" />
+    {{if .Params.collection_cover }}
+    <meta property="og:image" content="{{.Params.collection_cover}}?width=1200" />
+    {{else}}
+    <meta property="og:image" content="{{.Params.cover_image}}?width=1200" />
+    {{end}}
+
+
+    {{ with .Params.forestry_instant_preview_id }}
+        {{- safeHTML (printf "<meta property='forestry_instant_preview_id' content='%s'>" .) -}}
+    {{ end -}}
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-N2ZVNND');</script>
+    <!-- End Google Tag Manager -->
+
+    <link rel="canonical" href="{{ .Permalink | absLangURL }}" />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    {{ partial "head_custom.html" . }}
+
+    {{ $script := .Site.Data.webpack.main }}
+    {{ with $script.js }}
+        <script src="{{ . }}" defer></script>
+    {{ end }}
+
+    <link rel="stylesheet" href="https://use.typekit.net/khw0qei.css">
+    <script src="https://kit.fontawesome.com/a1dff7fdae.js" crossorigin="anonymous"></script>
+    {{ $stylesheet :=  .Site.Data.webpack.main }}
+    {{ with $stylesheet.css }}
+        <link href="{{ . }}" rel="stylesheet">
+    {{ end }}
+
+</head> 

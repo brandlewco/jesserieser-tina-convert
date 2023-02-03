@@ -1,0 +1,170 @@
+<section id="project-next" class="mt-12 mb-4 px-10 lg:px-16 xl:px-32">
+    <nav>
+    <ul class="mx-auto flex flex-row justify-between items-end sm:items-stretch">
+    <!-- RUN RANGE JUST FOR LAST ITEM IN COLLECTION TO COMPLETE PAGER LOOP -->
+    {{ $currentPage := .Permalink }}
+    {{ range .Site.Data.categories}}
+    {{ range last 1 .collection_pager}}
+    {{ with $.Site.GetPage . }} 
+    {{ if eq .Params.collection_archive true }}
+    <li class="hidden first">
+    <a href="{{ .RelPermalink }}" alt="{{ .Title }}" style="max-width: 45vw;">
+        <div class="block sm:hidden font-semibold mobile"></div>
+        <div class="hidden sm:flex flex-row text-left items-center">
+            <div class="arrow text-2xl font-thin pr-4">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" width="25" height="25" viewBox="0 0 256 150" style="transform: rotate(90deg);">
+                    <path d="M242.4 4.5L255.6 17.8 128 145.5 0.4 17.8 13.6 4.5 128 118.9z" style="fill:#000;"class="arrow-down"/>
+                </svg>
+            </div>
+            <div class="pager-title">
+                <div class="text-lg sm:text-2xl block font-bold font-light">
+                    {{ .Title }}
+                </div>
+                <div class="text-md sm:text-xl block font-normal font-base leading-relaxed text-left ">
+                    {{.Params.collection_meta | truncate 45 }}
+                </div>
+            </div>
+        </div>
+    </a>
+    </li>
+    {{ end }}
+    {{ end }}
+    {{ end }}
+    {{ end }}
+
+    <!-- RUN RANGE OF EVERY COLLECTION - NO ARCHIVES -->
+    {{ $currentPage := .Permalink }}
+    {{ range .Site.Data.categories}}
+    {{ range .collection_pager}}
+    {{ with $.Site.GetPage . }} 
+    {{ if eq .Params.collection_archive false }}
+    {{ if eq $currentPage .Permalink }}
+    <li class="sm:hidden" id="current">
+        <a href="{{ .RelPermalink }}" alt="{{ .Title }}" class="hidden">{{ .Title }}</a>
+        <a href="#project-header" alt="back to top" data-no-swup>
+            <div class="mx-auto w-full text-center font-light text-center" style="color: {{.Params.theme_color}};"  data-sal="slide-down" data-sal-delay="300">
+                <div class="text-5xl font-hairline flex flex-row justify-center" style="line-height: 0.4;">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" width="50" height="50" viewBox="0 0 256 150" style="transform: rotate(180deg);">
+                        <path d="M242.4 4.5L255.6 17.8 128 145.5 0.4 17.8 13.6 4.5 128 118.9z" style="fill:{{.Params.theme_color}} ;" class="arrow-down"/>
+                    </svg>
+                </div>
+                <span class="text-md sm:text-xl font-light">Back to Top</span>
+            </div>
+        </a>
+    </li>
+    {{else}}
+    <li class="hidden">
+    <a href="{{ .RelPermalink }}" alt="{{ .Title }}" style="max-width: 45vw;">
+        <div class="block sm:hidden font-semibold mobile"></div>
+        <div class="hidden sm:flex flex-row text-left items-center">
+            <div class="arrow text-2xl font-thin pr-4">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" width="25" height="25" viewBox="0 0 256 150" style="transform: rotate(90deg);">
+                    <path d="M242.4 4.5L255.6 17.8 128 145.5 0.4 17.8 13.6 4.5 128 118.9z" style="fill:#000;"class="arrow-down"/>
+                </svg>
+            </div>
+            <div class="pager-title">
+                <div class="text-lg sm:text-2xl block font-bold font-light">
+                    {{ .Title }}
+                </div>
+                <div class="text-md sm:text-xl block font-normal font-base leading-relaxed text-left ">
+                    {{.Params.collection_meta | truncate 45 }}
+                </div>
+            </div>
+        </div>
+    </a>
+    </li>
+    {{ end }}
+    {{ end }}
+    {{ end }}
+    {{ end }}
+    {{ end }}
+
+    <!-- RUN RANGE OF ARCHIVE -->
+    {{ range .Site.Data.categories}}
+    {{ range .collection_pager}}
+    {{ with $.Site.GetPage . }} 
+    {{ if eq .Params.collection_archive true}}
+    {{ if eq $currentPage .Permalink }}
+    <li class="sm:hidden" id="current">
+    <a href="{{ .RelPermalink }}" alt="{{ .Title }}" class="hidden">{{ .Title }}</a>
+    <a href="#project-header" alt="back to top" data-no-swup>
+        <div class="mx-auto w-full text-center font-light text-center" style="color: {{.Params.theme_color}};"  data-sal="slide-down" data-sal-delay="300">
+            <div class="text-5xl font-hairline flex flex-row justify-center" style="line-height: 0.4;">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" width="50" height="50" viewBox="0 0 256 150" style="transform: rotate(180deg);">
+                    <path d="M242.4 4.5L255.6 17.8 128 145.5 0.4 17.8 13.6 4.5 128 118.9z" style="fill:{{.Params.theme_color}} ;" class="arrow-down"/>
+                </svg>
+            </div>
+            <span class="text-md sm:text-xl font-light">Back to Top</span>
+        </div>
+    </a>
+    </li>
+    {{else}}
+    <li class="hidden archive">
+    <a href="{{ .RelPermalink }}" alt="{{ .Title }}" style="max-width: 45vw;">
+        <div class="block sm:hidden font-semibold mobile"></div>
+        <div class="hidden sm:flex flex-row text-left items-center">
+            <div class="arrow text-2xl font-thin pr-4">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" width="25" height="25" viewBox="0 0 256 150" style="transform: rotate(90deg);">
+                    <path d="M242.4 4.5L255.6 17.8 128 145.5 0.4 17.8 13.6 4.5 128 118.9z" style="fill:#000;" class="arrow-down"/>
+                </svg>
+            </div>
+            <div class="pager-title">
+                <div class="text-lg sm:text-2xl block font-bold font-light">
+                    Archive: {{ .Title }}
+                </div>
+                <div class="text-md sm:text-xl block font-normal font-base leading-relaxed text-left " >
+                    {{.Params.collection_meta | truncate 45 }}
+                </div>
+            </div>
+        </div>
+    </a>
+    </li>
+    {{ end }}
+    {{ end }}
+    {{ end }}
+    {{ end }}
+    {{ end }}
+
+    <!-- RUN RANGE JUST FOR FIRST ITEM IN COLLECTION TO COMPLETE PAGER LOOP -->
+    {{ $currentPage := .Permalink }}
+    {{ range .Site.Data.categories}}
+    {{ range first 1 .collection_pager}}
+    {{ with $.Site.GetPage . }} 
+    {{ if eq .Params.collection_archive false }}
+    <li class="hidden">
+    <a href="{{ .RelPermalink }}" alt="{{ .Title }}" style="max-width: 45vw;">
+        <div class="block sm:hidden font-semibold mobile"></div>
+        <div class="hidden sm:flex flex-row text-left items-center">
+            <div class="arrow text-2xl font-thin pr-4">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" width="25" height="25" viewBox="0 0 256 150" style="transform: rotate(90deg);">
+                    <path d="M242.4 4.5L255.6 17.8 128 145.5 0.4 17.8 13.6 4.5 128 118.9z" style="fill:#000;" class="arrow-down"/>
+                </svg>
+            </div>
+            <div class="pager-title">
+                <div class="text-lg sm:text-2xl block font-bold font-light">
+                    {{ .Title }}
+                </div>
+                <div class="text-md sm:text-xl block font-normal font-base leading-relaxed text-left" style="max-width: 50vw;">
+                    {{.Params.collection_meta | truncate 45 }}
+                </div>
+            </div>
+        </div>
+    </a>
+    </li>
+    {{ end }}
+    {{ end }}
+    {{ end }}
+    {{ end }}
+    </ul>
+    </nav>
+</section>
+<a href="#project-header" class="hidden sm:flex" alt="back to top" data-no-swup>
+    <div class="mx-auto w-full mt-32 text-center font-light text-center" style="color: {{.Params.theme_color}};"  data-sal="slide-down" data-sal-delay="300">
+        <div class="text-5xl font-hairline flex flex-row justify-center" style="line-height: 0.4;">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" width="50" height="50" viewBox="0 0 256 150" style="transform: rotate(180deg);">
+                <path d="M242.4 4.5L255.6 17.8 128 145.5 0.4 17.8 13.6 4.5 128 118.9z" style="fill:{{.Params.theme_color}} ;" class="arrow-down"/>
+            </svg>
+        </div>
+        <p class="text-md sm:text-xl font-light">Back to Top</p>
+    </div>
+</a>

@@ -1,0 +1,39 @@
+<figure class="filter-item h-auto py-4 pr-4 sm:pr-0 pl-4  sm:w-grid-three w-full overflow-hidden {{range .Params.collection_category }}{{. | replaceRE "[\\W]" "" | lower}} {{end}}{{with .Params.collection_filter}}{{. | replaceRE "[\\W]" "" | lower}}{{end}} all active" data-theme="{{with .Params.theme_color_all_works}}{{.}}{{else}}{{.Params.theme_color}}{{end}}" data-filter="{{range .Params.collection_category}}{{. | replaceRE "[\\W]" "" | lower}},{{end}}{{with .Params.collection_filter}}{{. | replaceRE "[\\W]" "" | lower}}{{end}}">
+    <a href="{{with .Params.gumroad_id}}https://gum.co/{{.}}{{else}}#{{end}}" style="text-decoration: none;" data-no-swup> 
+        {{if .Params.collection_preview }}
+        <div class="collection-preview relative lazyload" style="padding-top:75%; background-color:{{.Params.theme_color}};">
+        {{else}}
+        <div class="relative" style="padding-top:75%; background-color:{{.Params.theme_color}};">
+        {{end}}
+        <svg class="icon pointer h-8 w-8 m-4 text-white opacity-50 absolute spin" style="top: 50%; left: 50%; margin-top: -1rem; margin-left: -1rem;">
+            <use xlink:href="#spinner"></use>
+        </svg>
+            {{with .Params.collection_preview}}
+            {{ range first 1 . }}
+            <img data-sizes="auto" data-srcset="{{.}}?width=400&h=300 400w, {{.}}?width=500&h=375 500w, {{.}}?width=600&h=450 600w, {{.}}?width=800&h=600 800w" class="lazyload absolute top-0 left-0" style="opacity: 0;"/>
+            {{end}}
+            {{ range first 3 (after 1 . )}}
+            <img data-sizes="auto" data-srcset="{{.}}?width=400&h=300 400w, {{.}}?width=500&h=375 500w, {{.}}?width=600&h=450 600w, {{.}}?width=800&h=600 800w" class="lazyload absolute top-0 left-0" style="opacity: 0;"/>
+            {{end}}
+            {{else}}
+            <img data-sizes="auto" data-parent-fit="cover" data-srcset="{{.Params.collection_cover}}?width=400&h=300 400w, {{.Params.collection_cover}}?width=600&h=450 600w, {{.Params.collection_cover}}?width=800&h=600 800w" class="lazyload absolute top-0 left-0" alt="{{.Title}}"/>
+            {{end}}
+
+        </div>
+        
+
+        <figcaption class="flex flex-col sm:flex-row text-black text-base justify-between pt-1">
+            <div class="flex flex-col justify-between items-start">
+                <h1 class="font-medium italic block tracking-wide leading-tight">{{.Title}}</h1>
+                <h2 class="font-normal block text-xs pt-1 tracking-widest leading-tight">{{.Params.collection_meta}} {{with .Params.collection_meta_2}} - {{.}}{{end}}</h2>
+            </div>
+            <h3 class="text-xs font-medium tracking-wide leading-tight flex flex-row items-start sm:pl-2">
+                <div class="flex flex-row items-center">
+                <span class="font-normal text-xs tracking-widest leading-tight pr-1">From</span>
+                <span class="font-medium text-base italic tracking-wide leading-tight {{if eq .Params.sale true}}line-through text-gray-600 font-normal{{end}}">${{.Params.price}}</span>
+                {{if eq .Params.sale true}}<span>&nbsp;${{.Params.sale_price}}</span>{{end}}
+                </div>
+            </h3>
+        </figcaption>
+    </a>
+</figure>

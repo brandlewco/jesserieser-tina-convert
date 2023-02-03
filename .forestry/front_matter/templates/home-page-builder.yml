@@ -1,0 +1,109 @@
+---
+label: Home - Page Builder
+hide_body: true
+fields:
+- name: seo
+  type: include
+  config: {}
+  template: seo
+  label: SEO
+- type: text
+  label: Title
+  name: title
+- type: datetime
+  name: date
+  label: Date
+  hidden: true
+  default: now
+- type: text
+  name: layout
+  label: Layout
+  hidden: true
+  default: blocks
+- type: file
+  name: feature_cover
+  label: Feature Cover Image
+  hidden: true
+- name: collection_meta
+  type: textarea
+  default: ''
+  config:
+    required: false
+    wysiwyg: false
+    schema:
+      format: markdown
+  label: SEO Description
+- type: file
+  name: cover_image
+  label: SEO Cover Image
+  description: This image is what appears in OpenGraph previews and image masks
+- name: selected_works_theme
+  type: blocks
+  label: Random Featured Image
+  template_types:
+  - selected-works-theme
+  config:
+    min: 
+    max: 
+- type: color
+  name: home_theme_color
+  config:
+    color_format: Hex
+  label: Theme Color
+  hidden: true
+- name: navigation_theme
+  type: select
+  default: white
+  config:
+    required: true
+    options:
+    - white
+    - black
+    source:
+      type: simple
+      section: 
+      file: 
+      path: 
+  label: Navigation Color
+- type: textarea
+  name: feature_description
+  label: Introduction
+  config:
+    wysiwyg: true
+    schema:
+      format: markdown
+  description: Used for the top of the collection, and google meta data. (300 characters)
+- name: px_extra
+  type: boolean
+  label: Extra Padding on Descriptions On Large Screens
+- name: row_alignment
+  type: select
+  default: between
+  config:
+    required: false
+    options:
+    - start
+    - center
+    - end
+    - between
+    - around
+    source:
+      type: simple
+      section: 
+      file: 
+      path: 
+  label: First Row Justification
+  description: start (left) / center (center) / end (right) / between (even space     between
+    media) / around (even space outside media)
+- type: blocks
+  name: page_sections
+  label: Page Sections
+  template_types:
+  - block-media-feature
+  - block-media-feature-vimeo
+  - block-modal-blog
+  - block-media-text
+  - block-media-row
+  - block-media-link
+pages:
+- content/_index.md

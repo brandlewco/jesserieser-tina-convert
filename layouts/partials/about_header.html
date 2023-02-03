@@ -1,0 +1,80 @@
+<header id="project-header" class="w-full h-full lazyload flex flex-col items-center overflow-hidden relative z-0" style="background-color: {{.Params.theme_color}};">
+    <!-- <img 
+        data-sizes="auto"
+        data-src="{{.Params.collection_cover }}?width=1440"  
+        data-srcset="{{.Params.collection_cover_mobile }}?width=1024 768w, {{.Params.collection_cover }}?width=1920 1920w, {{.Params.collection_cover }}?width=2560 2560w, {{.Params.collection_cover }}"
+		class="featured lazyload bg-center h-screen object-cover absolute inset-0 z-0"
+        data-parent-fit="cover"
+        id="header-image"
+        style="max-width: 100%; max-height: 100%;"/> -->
+        <picture class="flex justify-center">
+            <source
+                data-srcset="{{.Params.collection_cover_mobile }}?width=720"
+                media="(orientation: portrait) and (max-width: 688px)" />
+            <source
+                data-srcset="{{.Params.collection_cover_mobile }}?width=1040"
+                media="(orientation: portrait) and (max-width: 1024px)" />
+            <source
+                data-srcset="{{.Params.collection_cover }}?width=1040"
+                media="(max-width: 1024px)" />
+            <source
+                data-srcset="{{.Params.collection_cover }}?width=1500"
+                media="(max-width: 1440px)"  />
+                <source
+                data-srcset="{{.Params.collection_cover }}?width=2560"
+                media="(max-width: 2560px)"  />
+            <img
+                id="header-image"
+                src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                class="featured lazyload bg-center h-full object-cover absolute inset-0 z-0"
+                alt="{{.Title}} Cover Image"
+                data-sizes="auto" />
+                <div id="header-loading" class="text-center font-semibold absolute inset-x-0 bottom-0 z-50 text-4xl">
+                    <i class="far fa-spinner-third fa-spin text-{{.Params.navigation_theme}}"></i>
+                </div>
+                <div id="header-pointer" class="absolute bottom-0 mx-0 text-6xl font-light text-{{.Params.navigation_theme}} z-10 opacity-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" width="50" height="50" viewBox="0 0 256 150">
+                    <path d="M242.4 4.5L255.6 17.8 128 145.5 0.4 17.8 13.6 4.5 128 118.9z" style="fill:{{.Params.navigation_theme}} ;" class="arrow-down"/>
+                    </svg>
+                </div>
+        </picture>
+    <!-- <div id="header-overlay" class="absolute w-full h-full inset-auto z-40" style="background-color: {{.Params.theme_color}}; opacity: 0.01;" ></div> -->
+    <div id="page-title" class="fixed z-50 margin-0 left-0 right-0 px-4 lg:px-64 font-light text-{{.Params.navigation_theme}} text-center lazyload" style="top: 50%; transform: translate3d(0, -50%, 0)">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-widest leading-tight text-center" data-sal="slide-down" data-sal-delay="1000">{{.Title}}</h1>
+    </div>
+</header>
+<section id="project-description" class="about-col w-full pt-20 pb-8 sm:py-20 px-4 md:px-32 xl:px-64 leading-tight text-{{.Params.navigation_theme}} items-center relative z-100"  style="background-color: {{.Params.theme_color}}; backface-visibility: hidden;">
+    <div class="flex flex-col justify-center mx-auto">
+        <!-- <header class="hidden sm:flex flex-row justify-center flex-grow text-2xl">
+            <h3 class="w-full sm:w-1/3 lg:w-1/4 ml-0 sm:ml-4 lg:ml-8 pb-4 mb-4 flex flex-col justify-start" data-sal="slide-up" data-sal-delay="0">
+                {{ .Params.header_col_1_title | markdownify }}
+            </h3>
+            <h3 class="w-full sm:w-1/3 lg:w-1/4 mx-0 sm:ml-4 lg:mx-8 pb-4 mb-4 flex flex-col justify-start" data-sal="slide-up" data-sal-delay="0">
+                {{ .Params.header_col_2_title | markdownify }}
+            </h3>
+            <h3 class="w-full sm:w-1/3 lg:w-1/4 ml-0 sm:ml-4 lg:ml-8 pb-4 mb-4 flex flex-col justify-start" data-sal="slide-up" data-sal-delay="0">
+                {{ .Params.header_col_3_title | markdownify }}
+            </h3>
+        </header> -->
+        <section class="flex flex-col sm:flex-row justify-center items-start text-base md:text-lg">
+            <aside class="w-full sm:w-1/3 lg:w-1/4 ml-0 sm:ml-4 lg:ml-8 pb-8 sm:pb-0 flex sm:justify-center" data-sal="slide-up" data-sal-delay="50">
+                <div>
+                <h3 class="mb-3 text-2xl" >{{ .Params.header_col_1_title | markdownify }}</h3>
+                {{ .Params.header_col_1 | markdownify }}
+                </div>
+            </aside>
+            <aside class="w-full sm:w-1/3 lg:w-1/4 mx-0 sm:ml-4 lg:mx-8 pb-8 sm:pb-0 flex sm:justify-center" data-sal="slide-up" data-sal-delay="250">
+                <div>
+                <h3 class="mb-3 text-2xl">{{ .Params.header_col_2_title | markdownify }}</h3>
+                {{ .Params.header_col_2 | markdownify }}
+                </div>
+            </aside>
+            <aside class="w-full sm:w-1/3 lg:w-1/4 ml-0 sm:ml-4 lg:ml-8 pb-4 sm:pb-0 flex sm:justify-center"  data-sal="slide-up" data-sal-delay="500">
+                <div>
+                <h3 class="mb-3 text-2xl" >{{ .Params.header_col_3_title | markdownify }}</h3>
+                {{ .Params.header_col_3 | markdownify }}
+                </div>
+            </aside>
+        </section> 
+    </div>
+</section>

@@ -1,0 +1,92 @@
+{{ $key := .Site.GetPage .Section.attached_blog }}
+<section class="figure block-hover lg:meta-hover {{with $key.Params.blog_block_cover }}figure-blog-cover{{else}}figure-blog-text{{end}} block-hover self-start {{with .Section.align_y}}sm:self-{{.}}{{end}} w-full {{with .Section.width}}sm:w-{{.}}/100{{end}} py-4 sm:py-0 mt-0 {{with .Section.margin_y}}sm:mt-{{.}}{{end}} ml-0 {{with .Section.margin_left}}sm:ml-{{.}}{{end}} mr-0 {{with .Section.margin_right}}sm:mr-{{.}}{{end}} highlight rellax-wrapper">
+  <div class="rellax"  data-rellax-speed="2" data-rellax-xs-speed="0" >
+  <button type="button" id="blog-{{$key.Params.title | lower | urlize}}" class="popup-trigger relative w-full flex flex-col h-auto sm:h-0 justify-between items-start items-center overflow-hidden {{with $key.Params.block_aspect_ratio }}{{.}}{{else}}sm:aspect-ratio-4/3{{end}}" data-blog-id="{{.id}}" style="background-color: {{$key.Params.theme_color}}" data-popup-trigger="blog-{{$key.Params.title | lower | urlize}}" name="View Blog - {{$key.Params.title}} - Jesse Rieser">
+    {{ if $key.Params.vimeo_block_cover }}
+    <iframe src="https://player.vimeo.com/video/{{$key.Params.vimeo_block_cover}}?background=1" class="object-cover absolute p-4 inset-0 z-0 h-full w-full" frameborder="0" allow="autoplay"></iframe>
+    {{else}}
+    {{ if $key.Params.blog_block_cover }}
+      <img 
+      data-sizes="auto"
+      src="{{ $key.Params.blog_block_cover | safeHTML }}?width=300"
+      data-srcset="{{ $key.Params.blog_block_cover | safeHTML }}?width=300 300w,
+      {{ $key.Params.blog_block_cover | safeHTML }}?width=600 600w, 
+      {{ $key.Params.blog_block_cover | safeHTML }}?width=900 900w,
+      {{ $key.Params.blog_block_cover | safeHTML }}?width=1200 1200w"
+      class="lazyload bg-center object-cover absolute p-5 sm:p-0 inset-0 z-0 h-full w-full"
+      data-parent-fit="cover" alt="{{$key.Params.title }} - blog post cover image"/>
+    {{end}}
+    {{end}}
+    <div class="absolute top-0 left-0 h-full w-full flex flex-col justify-center p-4 sm:p-2">
+        <h1 class="text-lg {{with $key.Params.text_size}}lg:text-{{.}}{{else}}lg:text-2xl{{end}} opacity-100 lg:opacity-0 font-bold text-center tracking-widest">{{$key.Params.title}}</h1>
+        <h2 class="text-base opacity-100 lg:opacity-0 font-semibold text-center tracking-widest">{{$key.Params.caption}}</h2>
+    </div>
+  </button>
+  <h6 class="mb-0 ml-0 text-black font-normal text-xs sm:text-base tracking-widest leading-tight mt-1 sm:mt-0" data-sal="slide-down" data-sal-delay="600">{{range $key.Params.news_category}}{{. | replaceRE "[\\W]" ""}} {{end}}</h6>
+  </div>
+</section>
+
+<article id="popup-{{$key.Params.title | lower | urlize}}" class="popup-modal scrollbar block fixed z-999 text-black bg-white overflow-y-scroll overflow-x-hidden h-full w-full inset-0" data-popup-modal="blog-{{$key.Params.title | lower | urlize}}" style="visibility: hidden; opacity: 0;" role="dialog" aria-modal="true">
+  <div class="flex flex-col w-full px-4 sm:px-40">
+    <header class="fixed top-0 left-0 w-full px-4 sm:px-20 flex flex-row justify-between py-6 z-100 bg-white items-baseline">
+      <div class="text-lg sm:text-2xl uppercase font-medium text-center text-black">JESSE RIESER</div>
+        <div class="text-xs sm:text-xl pr-12 sm:pr-0 uppercase font-medium text-center text-black">NEWS: <span class="italic font-light">{{range $key.Params.news_category}}{{.}}{{end}}</span></div>
+          <svg width="35" height="35" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" class="hover icon pointer h-6 w-6 mr-2 sm:mr-6 absolute top-0 right-0 text-white popup-modal__close z-999" style="margin-top:1.6rem;"><g fill="none" stroke="#000"  stroke-miterlimit="10" stroke-width="10"><path d="m4.7 4.7 246.6 246.6"/><path d="m250.85 4.7-246.6 246.6"/></g></svg>
+    </header>
+    <div class="w-full lazy-gallery lazyload-delay relative mt-20">
+        <div class="paginated_gallery gallery">
+          <!-- <div class="gallery_scroller flex flex-row justify-start items-center carousel" style="transform: translate3d(0,0,0);"
+          data-flickity='{ "wrapAround": true, "percentPosition": false, "draggable": ">1", "arrowShape": "m77.59 5.06-5.17-5.21-50 50 50 50 5.17-5.21-44.77-44.81z"}'> -->
+          <div class="gallery_scroller flex flex-row justify-start items-center carousel" style="transform: translate3d(0,0,0);">
+            <!-- <svg class="icon pointer h-8 w-8 m-4 opacity-50 absolute spin" style="top: 50%; left: 50%; margin-top: -1rem; margin-left: -1rem; color: {{$key.Params.theme_color}}">
+                <use xlink:href="#spinner"></use>
+            </svg> -->
+            {{- range $key.Params.blog_slider -}}
+            <div class="carousel-cell w-full" style="padding-top: 56.25%;">
+              <!-- background-color: {{$key.Params.theme_color}}; -->
+              {{ partial (printf "blocks/block-%s.html" .block) (dict "Section" . "Page" $ "Site" $.Site) }}
+            </div>
+            {{- end -}}
+          </div>
+        </div>
+    </div>
+    <section class="py-6 w-full mx-auto">
+      <header class="flex flex-col items-start mb-8 leading-none">
+        <div class="text-xl sm:text-5xl font-medium text-black pb-4">{{$key.Params.title}}</div>
+        <div class="text-base sm:text-2xl font-medium italic text-black">{{$key.Params.caption}}</div>
+      </header>
+      <div class="text-sm sm:text-base w-100 h-100 text-black leading-tight pb-8">
+        {{ $key.Params.content | markdownify }}
+      </div>
+      <section class="block-media group-hover flex flex-wrap mx-auto h-auto {{with .Params.row_alignment}}sm:justify-{{.}}{{else}}sm:justify-between{{end}}">
+        {{- range $key.Params.blog_builder -}}
+        {{ partial (printf "blocks/block-%s.html" .block) (dict "Section" . "Page" $ "Site" $.Site "color" $key.Params.theme_color) }}
+        {{- end -}}
+      </section>
+    </section>
+  </div>
+{{ if $key.Params.attached_collection }}
+{{ $attached := $key.Params.attached_collection }}
+{{ $attached := string $attached}}
+{{ with .Site.GetPage $attached }}
+<section class="mt-4 sm:mt-16 text-black">
+  <a href="/{{.Params.slug}}" alt="view collection" class="exit-modal">
+      <div class="mx-auto w-full mb-8 text-center font-light"  data-sal="slide-down" data-sal-delay="300">
+          <!-- <p class="text-5xl font-hairline" style="line-height: 0.4;">&#8963;</p> -->
+          <p class="text-md sm:text-xl font-light">View Full Project</p>
+      </div>
+  </a>
+</section>
+{{ end }}
+{{ else if  $key.Params.attached_link }}
+<section class="mt-4 sm:mt-16 text-black">
+  <a href="{{$key.Params.attached_link}}" alt="view collection" class="exit-modal">
+      <div class="mx-auto w-full mb-8 text-center font-light"  data-sal="slide-down" data-sal-delay="300">
+          <!-- <p class="text-5xl font-hairline" style="line-height: 0.4;">&#8963;</p> -->
+          <p class="text-md sm:text-xl font-light">View Full Project</p>
+      </div>
+  </a>
+</section>
+{{end}}
+
+</article>

@@ -1,0 +1,22 @@
+baseurl = "/"
+languageCode = "en-us"
+languageLang = "en"
+title = "Jesse Reiser"
+
+description = "A STUDENT OF SUBTLETIES."
+
+disableKinds = ["RSS", "taxonomy", "taxonomyTerm"]
+
+# Enable this to have links relativized by Hugo
+# E.g,  if your /post/first/ page contains a link 
+# to /about/, Hugo will rewrite the URL to ../../about/
+relativeURLs = false
+
+# Enable to have links open in new tab
+hrefTargetBlank = false
+
+[markup.goldmark.renderer]
+unsafe = true
+
+[permalinks]
+collections = "/:slug/"

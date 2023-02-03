@@ -1,0 +1,28 @@
+---
+label: "⎓ Row ⎓"
+hide_body: false
+fields:
+- type: text
+  hidden: true
+  label: block
+  name: block
+  default: media-row
+- name: row_alignment
+  type: select
+  default: between
+  config:
+    required: false
+    options:
+    - start
+    - center
+    - end
+    - between
+    - around
+    source:
+      type: simple
+      section: 
+      file: 
+      path: 
+  label: Row Justification
+  description: start (left) / center (center) / end (right) / between (even space
+    between media) / around (even space outside media)
